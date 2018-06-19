@@ -88,6 +88,25 @@ class Album extends Component {
     this.setState({ currentTime: newTime });
   }
 
+  formatTime(seconds) {
+    if (isNaN(seconds)) { return "-:--"; }
+    const fullSeconds = Math.floor(seconds);
+    const minutes = Math.floor(fullSeconds / 60);
+    const remainingTime = fullSeconds % 60;
+    let time = minutes + ':';
+    if (remainingTime < 10) {
+      time += '0';
+    }
+    time += remainingTime;
+    return time
+  }
+
+  handleVolumeChange(e) {
+    const newVolume = e.target.value;
+    this.audioElement.volume = newVolume;
+    this.setState({ volume: newVolume});
+  }
+
   render() {
     return (
       <section className="album">
@@ -142,6 +161,8 @@ class Album extends Component {
           handlePrevClick={() => this.handlePrevClick()}
           handleNextClick={() => this.handleNextClick()}
           handleTimeChange={(e) => this.handleTimeChange(e)}
+          formatTime={(e) => this.formatTime(e)}
+          handleVolumeChange={(e) => this.handleVolumeChange(e)}
         />
       </section>
     );
