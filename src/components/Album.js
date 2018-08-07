@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
 import PlayerBar from './PlayerBar';
+import { Container, Row, Col, Table, Media} from 'reactstrap';
+import '../Styles/Album.css';
+
 
 class Album extends Component {
   constructor(props) {
@@ -109,24 +112,25 @@ class Album extends Component {
 
   render() {
     return (
-      <section className="album">
-        <section id="album-info">
-          <img id="album-cover-art" src={this.state.album.albumCover} alt={this.state.album.title}/>
-          <div className="album-details">
+
+      <Container>
+        <Row>
+          <Col xs="6" align="center">
             <h1 id="album-title">{this.state.album.title}</h1>
-            <h2 className="artist">{this.state.album.artist}</h2>
+            <Media object data-src="album-cover-art" responsive="true" src={this.state.album.albumCover} alt={this.state.album.title} height={240} width={340}/>
+            <h3 className="artist">{this.state.album.artist}</h3>
             <div id="release-info">{this.state.album.release}</div>
-          </div>
-        </section>
-        <table id="song-list">
-          <colgroup>
-            <col id="song-number-column" />
-            <col id="song-title-column" />
-            <col id="song-duration-column" />
-          </colgroup>
-          <tbody>
-            {this.state.album.songs.map((song, index) =>
-              <tr className="song" key={index} onClick={() => this.handleSongClick(song)}
+          </Col>
+          <Col xs="6" align="center">
+          <Table responsive>
+            <colgroup>
+              <col id="song-number-column" />
+              <col id="song-title-column" />
+              <col id="song-duration-column" />
+            </colgroup>
+            <tbody>
+              {this.state.album.songs.map((song, index) =>
+                <tr className="song" key={index} onClick={() => this.handleSongClick(song)}
                 onMouseEnter={() => this.setState({isHovered: index + 1})}
                 onMouseLeave={() => this.setState({isHovered: false})}>
 
@@ -147,11 +151,10 @@ class Album extends Component {
                 <td className="song-duration">{this.formatTime(song.duration)}</td>
               </tr>
             )}
-
-
-
           </tbody>
-        </table>
+        </Table>
+      </Col>
+      <Col sm="9" md={{ size: 9, offset:2 }} className="song-list" align="center">
         <PlayerBar
           isPlaying={this.state.isPlaying}
           currentSong={this.state.currentSong}
@@ -164,7 +167,9 @@ class Album extends Component {
           formatTime={(e) => this.formatTime(e)}
           handleVolumeChange={(e) => this.handleVolumeChange(e)}
         />
-      </section>
+        </Col>
+      </Row>
+    </Container>
     );
   }
 }
