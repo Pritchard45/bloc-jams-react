@@ -60,3 +60,32 @@ tr:hover {
 .table > tbody > tr > td {
   vertical-align: middle;
 }
+
+.current-time {
+  font-family: "Courier New";
+  color: white;
+  font-size: 1rem;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.total-time {
+  font-family: "Courier New";
+  color: white;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.ion-volume-low {
+  color: white;
+  font-size: 1.75rem;
+}
+
+.ion-volume-high {
+  color: white;
+  font-size: 1.75rem;
+}
+
+.seek-bar {
+  width: 300px;
+}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import albumData from './../data/albums';
 import {Media, Row, Col, Image } from 'reactstrap';
-import '../Styles/Library.css';
+
 
 class Library extends Component {
   constructor(props) {
